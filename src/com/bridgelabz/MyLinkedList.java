@@ -47,6 +47,7 @@ public class MyLinkedList<K> {
 	}
 
 	private INode setNext(INode newNode) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -54,6 +55,12 @@ public class MyLinkedList<K> {
 		INode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
 		newNode.setNext(tempNode);
+	}
+
+	public INode pop() {
+		INode tempNode = this.head;
+		this.head = head.getNext();
+		return tempNode;
 	}
 
 	public static void main(String[] args) {
@@ -66,7 +73,8 @@ public class MyLinkedList<K> {
 		myLinkList.append(myFirstNode);
 		myLinkList.append(myThirdNode);
 		myLinkList.insert(myFirstNode, mySecondNode);
+		myLinkList.pop();
 		myLinkList.printMyNodes();
 
 	}
-}
+}				
