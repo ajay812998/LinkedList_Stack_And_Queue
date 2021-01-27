@@ -35,17 +35,34 @@ public class MyLinkedList<K> {
 		System.out.println(myNode);
 	}
 
+	public void append(INode newNode) {
+		if (head == null)
+			this.head = newNode;
+		if (tail == null)
+			this.tail = newNode;
+		else {
+			this.tail.setNext(newNode);
+			this.tail = newNode;
+		}
+	}
+
+	private INode setNext(INode newNode) {
+		
+		return null;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Linked List Problem");
 		MyLinkedList myLinkList = new MyLinkedList();
-		MyNode<Integer> myFirstNode = new MyNode<Integer>(70);
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
 		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
-		MyNode<Integer> myThirdNode = new MyNode<Integer>(56);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(70);
 
-		myLinkList.add(myFirstNode);
-		myLinkList.add(mySecondNode);
-		myLinkList.add(myThirdNode);
+		myLinkList.append(myFirstNode);
+		myLinkList.append(mySecondNode);
+		myLinkList.append(myThirdNode);
 		myLinkList.printMyNodes();
-		
+
 	}
+
 }
