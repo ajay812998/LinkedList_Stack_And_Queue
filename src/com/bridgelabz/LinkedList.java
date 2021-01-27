@@ -7,10 +7,7 @@ public class LinkedList<K> {
 		this.head = null;
 		this.tail = null;
 	}
-	/**Usecase 2
-	 * Function adds elements to the linked list(head changes)
-	 * @param node
-	 */
+	
 	public void add(INode<K> node) {
 		if(head == null) {
 			head = node;
@@ -23,11 +20,7 @@ public class LinkedList<K> {
 			head.setNext(tempNode);	
 		}
 	}
-	/**
-	 * Usecase 3
-	 * Function appends elements to the head(tail changes)
-	 * @param node
-	 */
+	
 	public void append(INode<K> node) {
 		if(head == null) {
 			head = node;
@@ -39,12 +32,7 @@ public class LinkedList<K> {
 			tail = node;
 		}
 	}
-	/**
-	 * Usecase 4
-	 * Function inserts at a specified position in list
-	 * @param position
-	 * @param node
-	 */
+	
 	public void insert(int position, INode<K> node) {
 		int count = 0;
 		INode<K> previousNode = null;
@@ -57,21 +45,14 @@ public class LinkedList<K> {
 		previousNode.setNext(node);
 		node.setNext(currentNode);
 	}
-	/**Usecase 5
-	 * Function returns the first element in the list
-	 * @return
-	 */
+	
 	public K pop() {
 		INode<K> tempNode = head.getNext();
 		K key = head.getKey();
 		head = tempNode;
 		return key;
 	}
-	/**
-	 * Usecase 6
-	 * Function pops the last element in the list
-	 * @return
-	 */
+	
 	public K popLast() {
 		INode<K> currentNode = head;
 		INode<K> previousNode = null;
@@ -85,12 +66,7 @@ public class LinkedList<K> {
 		tail = previousNode;
 		return key;	
 	}
-	/**
-	 * Usecase 7
-	 * Function searches for an item in list
-	 * @param item
-	 * @return
-	 */
+	
 	public boolean search(K item) {
 		boolean isPresent = false;
 		INode<K> tempNode = head;
@@ -107,6 +83,7 @@ public class LinkedList<K> {
 		}
 		return isPresent;	
 	}
+	
 	public int index(K item) {
 		int index = 0;
 		int count = 0;
@@ -135,6 +112,47 @@ public class LinkedList<K> {
 		}	
 		System.out.print(tempNode.getKey());
 	}
+	public boolean isEmpty() {
+		boolean empty = false;
+		if(head == null ) {
+			empty = true;
+		}
+		return empty;
+	}
+	public void remove(INode<K> node) {
+		boolean removed = false;
+		INode<K> currentNode = head.getNext();
+		INode<K> previousNode = head;
+		if(head.equals(node) && head != null) {
+			this.pop();
+		}
+		else if(tail.equals(node)) {
+			this.popLast();	
+		}
+		else {
+			do {
+				if(currentNode.getKey().equals(node.getKey())) {
+					previousNode.setNext(currentNode.getNext());
+					removed = true;
+				}
+				previousNode = currentNode;
+				currentNode = currentNode.getNext();
+			}while(!removed);
+		}
+	}
+	
+	public int size() {
+		int count = 0;
+		INode<K> node = head;
+		while(node.getNext() != null) {
+			count++;
+			node = node.getNext();
+		}
+		if(node.equals(tail)) {
+			count++;
+		}
+		return count;
+	}
 	public static void main(String[] args)
 	{
 		LinkedList<Integer> list = new LinkedList<Integer>();
@@ -146,6 +164,7 @@ public class LinkedList<K> {
 		list.append(thirdNode);
 		list.insert(1, secondNode);
 		list.insert(list.index(secondNode.getKey())+1, fourthNode);
+		list.remove(fourthNode);
 		list.printNodes();
 	}
 }

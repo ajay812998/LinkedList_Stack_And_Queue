@@ -16,9 +16,8 @@ class LinkedListTest {
 		list.append(thirdNode);
 		assertEquals(true,list.search(30));
 	}
-	
 	@Test
-	public void givenNodePresentInLinkedList_shouldReturnTrue() {
+	public void givenNodePresentInLinkedList_shouldInsertNodeAnd_shouldReturnTrue() {
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		MyNode<Integer> firstNode = new MyNode<Integer>(56);
 		MyNode<Integer> secondNode = new MyNode<Integer>(30);
@@ -28,7 +27,24 @@ class LinkedListTest {
 		list.append(secondNode);
 		list.append(thirdNode);
 		list.insert(list.index(secondNode.getKey())+1, fourthNode);
-		boolean result = list.head.equals(firstNode) && list.tail.equals(thirdNode) && list.head.getNext().equals(secondNode) && list.head.getNext().getNext().equals(fourthNode);
+		boolean result = list.head.equals(firstNode) 
+				&& list.tail.equals(thirdNode) 
+				&& list.head.getNext().equals(secondNode) 
+				&& list.head.getNext().getNext().equals(fourthNode);
 		assertTrue(result);
+	}
+	@Test
+	public void givenNodeRemoved_shouldReturnSize() {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		MyNode<Integer> firstNode = new MyNode<Integer>(56);
+		MyNode<Integer> secondNode = new MyNode<Integer>(30);
+		MyNode<Integer> thirdNode = new MyNode<Integer>(70);
+		MyNode<Integer> fourthNode = new MyNode<Integer>(40);
+		list.add(firstNode);
+		list.append(secondNode);
+		list.append(thirdNode);
+		list.insert(list.index(secondNode.getKey())+1, fourthNode);
+		list.remove(fourthNode);
+		assertEquals(3,list.size());
 	}
 }
